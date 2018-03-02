@@ -1,0 +1,82 @@
+<div *ngIf="!isConnected">
+  <div class="alert alert-danger" role="alert" id='alertConnectionError' style='display:none'></div>
+  <div class="form-group mx-auto border rounded w-25 p-3">
+    <h3>Administration</h3>
+    <label for="txtUsername">Utilisateur:</label><input type="text" class="form-control" id="txtUsername" [(ngModel)]="userNickname"/>
+    <label for="txtPassword">Mot de passe: </label><input type="text" class="form-control" id="txtPassword" [(ngModel)]="userPassword"/>
+    <div class="text-right"><input type="button" class="btn btn-primary mt-3 connectionButton" value="Connexion" id='btnConnection' (click)='tryConnect()'/></div>
+  </div>
+</div>
+
+<div *ngIf="isConnected">
+  <h2>Administration</h2>
+  <div class="border rounded-top">
+    <table id="tableAdmin" class="table table-sm text-left m-0">
+      <thead class="thead-light">
+        <tr>
+          <th class="p-2 border-0">Image</th>
+          <th class="p-2 border-0">Nom</th>
+          <th class="p-2 border-0">Description</th>
+          <th class="p-2 border-0">Prix</th>
+          <th class="border-0"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td class="text-center"><img [src]='item.image'/></td>
+          <td class="text-left">{{item.nom}}</td>
+          <td class="text-left">{{item.description}}</td>
+          <td id="tdAdminPrix">{{item.prix}}</td>
+          <td class="text-center align-middle">
+          <input type="button" class="btn btn-primary edit" value="Modifier" (click)="modify(item.id)"/>
+          <input type="button" class="btn btn-danger delete" value="X" (click)="delete(item.id)"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="text-right">
+    <input type="button" class="btn btn-primary mt-3" value="Ajouter un produit" (click)="addProduct()"/>
+    <input type="button" class="btn btn-primary mt-3" value="Se déconnecter" (click)="deconnect()"/>
+  </div>
+</div>
+
+
+
+<!--
+//Add a click event to all the delete buttons
+$("#mainContent .delete").each (function (index){
+let id:number = Number((<HTMLInputElement>this).value);
+(<HTMLInputElement>this).value = "X";
+$(this).on("click", function(){
+if (confirm("Voulez-vous vraiment supprimer ce produit?")){
+//Remove item from shop
+new Shop().removeItem(id);
+$(this).parent().parent().remove();
+}
+})
+});
+
+//Add a click event to all the edit buttons
+$("#mainContent .edit").each (function (index){
+let id:string = (<HTMLInputElement>this).value;
+(<HTMLInputElement>this).value = "Modifier";
+$(this).on("click", function(){
+//Redirect to edit page
+document.location.href = "?page=edit&id=" + id;
+})
+});
+
+//Add click event to add button
+$("#mainContent .ajouter").on("click", function(){
+//Add a random item in shop
+new Shop().addRandomItem();
+location.reload();
+});
+
+//Add click event to disconnect button
+$("#mainContent .deconnexion").on("click", function(){
+//Disconnect user
+deconnect();
+location.reload();
+}); -->

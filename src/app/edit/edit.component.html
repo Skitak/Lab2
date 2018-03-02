@@ -1,0 +1,10 @@
+<div class="alert alert-danger" role="alert" id='alertConnectionError' style='display:none'></div>
+<div class="form-group mx-auto border rounded w-25 p-3">
+  <h3>Modification de : {{item.nom}} </h3>
+  <label for="nom">Nom:</label><input type="text" class="form-control" id="nom" [value]="item.nom" [(ngModel)]="itemName"/>
+  <label for="image">Image: </label><input type="text" class="form-control" id="image" [value]="item.image"[(ngModel)]="itemImage"/>
+  <label for="prix">Prix:</label><input type="number" class="form-control" id="prix" [value]="item.prix"[(ngModel)]="itemPrice"/>
+  <label for="description">Description:</label><input type="text" class="form-control" id="description" [value]="item.description" [(ngModel)]="itemDescription"/>
+    
+  <div class="text-right"><input type="button" class="btn btn-primary mt-3 connectionButton" value="Modifier" id='btnValidation' (click)='validate()'/></div>
+</div>

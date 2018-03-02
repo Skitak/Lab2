@@ -1,0 +1,25 @@
+
+<div class='float-left p-3 divProducts' id='divProduct' *ngFor="let item of items; let i = index">
+  <div class='card'>
+  <img [src]='item.image' class='card-img-top'/>
+    <div class='card-body text-center'>
+      <h3 class='card-title'><a (click)="description(item.id)">{{ item.nom }}</a></h3>
+      <p class='card-text'>Prix: {{ item.prix }}</p>
+      <input type='button' class='btn btn-danger' value="Retirer du pannier" (click)="removeItemFromBasket(item.id)"/>
+    </div>
+  </div>
+</div>
+ 
+<div class='w-100 text-right' id='divPagination'>
+  <ul class='pagination float-right'>
+    <li class='page-item prev' *ngIf="page !== 1">
+      <a class='page-link' (click)="preview()">Précédent</a>
+    </li>
+    <li class='page-item {{ isPageActive(i + 1)}}' *ngFor="let page of pages; let i = index">
+      <a class='page-link page-number' (click)="changePage(i + 1)">{{i + 1}}</a>
+    </li>
+    <li class='page-item next' *ngIf="page <= pages.length">
+      <a class='page-link' (click)="next()">Suivant</a>
+    </li>
+  </ul>
+</div>
